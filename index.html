@@ -87,12 +87,22 @@
       <a class="btn btn-default">RIGHT</a>
     </div>
     <script>
+      var eventArray = [];
       window.addEventListener("keydown", function(e){
-        const correspondingButton = document.querySelector(`a[data-code="${e.keyCode}"]`);
-        if(!correspondingButton) return;
-        console.log(correspondingButton);
-        correspondingButton.classList.add("pressed");
-        correspondingButton.innerHTML = `${e.keyCode}`;
+         console.log(e);
+         if(eventArray.length < 2){
+           eventArray.push(e);
+           console.log("after push : ", eventArray);
+         }else{
+            eventArray = [];
+            eventArray.push(e);
+            console.log("after clear : ", eventArray);
+         }
+        // const correspondingButton = document.querySelector(`a[data-code="${e.keyCode}"]`);
+        // if(!correspondingButton) return;
+        // console.log(correspondingButton);
+        // correspondingButton.classList.add("pressed");
+        // correspondingButton.innerHTML = `${e.keyCode}`;
       });
       // function addCodeToKeyboardButton(){
       //   if()
