@@ -59,7 +59,7 @@
       <a class="btn btn-default">| \</a>  
     </div>
     <div class="keyboard-row">
-      <a class="btn btn-default">SHIFT left</a>
+      <a data-shiftPosition="ShiftLeft" class="btn btn-default">SHIFT left</a>
       <a class="btn btn-default">~ `</a>
       <a class="btn btn-default">Z</a>
       <a class="btn btn-default">X</a>
@@ -71,7 +71,7 @@
       <a class="btn btn-default">< ,</a>
       <a class="btn btn-default">> .</a>
       <a class="btn btn-default">? /</a>
-      <a class="btn btn-default">SHIFT right</a>  
+      <a data-shiftPosition="ShiftRight" class="btn btn-default">SHIFT right</a>  
     </div>
     <div class="keyboard-row">
       <a class="btn btn-default">fn</a>
@@ -141,9 +141,11 @@
         
         // check if the shift was combined with another key
         if(lastEvent.shiftKey === true && lastEvent.keyCode !== 16 ){
-          console.log("it wash shifted");
+          console.log("it wah shifted");
           correspondingButton.classList.add("pressedWithShift");
-          console.log("the shift pressed in this case : ", shiftPressed);
+          const correspondingShiftButton = document.querySelector(`a[data-shiftPosition="${shiftPressed}"]`);
+          console.log("the corresponding shift: ", correspondingShiftButton);
+          correspondingShiftButton.classList.add("shiftPressed");
         }
 
       });
