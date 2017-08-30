@@ -1,0 +1,18 @@
+.keyboard-row {
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center; 
+  margin: 20px auto;
+}
+
+.btn.btn-default{
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.pressed{
+  background-color: #2D4189;
+  border-color: #124189;
+  color: white;
+}
