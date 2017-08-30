@@ -5,14 +5,14 @@
   align-items: center; 
   margin: 20px auto;
 }
-
 .btn.btn-default{
   min-width: 40px;
   min-height: 40px;
 }
-
 .pressed{
   background-color: #2D4189;
   border-color: #124189;
+}
+.white-text{
   color: white;
 }

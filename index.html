@@ -89,24 +89,35 @@
     <script>
       var eventArray = [];
       window.addEventListener("keydown", function(e){
-         console.log(e);
+        //  console.log(e);
+         // check event array length and clear after two events have been saved
          if(eventArray.length < 2){
-           eventArray.push(e);
-           console.log("after push : ", eventArray);
+            eventArray.push(e);
+            console.log("after push : ", eventArray);
          }else{
             eventArray = [];
             eventArray.push(e);
             console.log("after clear : ", eventArray);
          }
-        // const correspondingButton = document.querySelector(`a[data-code="${e.keyCode}"]`);
-        // if(!correspondingButton) return;
-        // console.log(correspondingButton);
-        // correspondingButton.classList.add("pressed");
-        // correspondingButton.innerHTML = `${e.keyCode}`;
+            // console.log("key inside array: ", eventArray[0].key);
+
+        // query the button with the corresponding "keydown"-event keyCode
+        const correspondingButton = document.querySelector(`a[data-code="${e.keyCode}"]`);
+        if(!correspondingButton) return;
+        console.log(correspondingButton);
+        // add the "pressed" css class to highlight the pressed keyboard button
+        correspondingButton.classList.add("pressed");
+
+        // create a new span containing the press button's name and append to the relevant keyboard button on the screen
+        var keyName = document.createElement('span');
+        keyName.setAttribute("class", "white-text");
+        keyName.innerHTML = `${e.key}`;
+        correspondingButton.appendChild(keyName);
+
+        // check if a "shift" character has been pressed
+        console.log(this.shiftKey);
       });
-      // function addCodeToKeyboardButton(){
-      //   if()
-      // }
+
 
 
 
