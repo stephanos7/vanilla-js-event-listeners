@@ -8,10 +8,15 @@
 .btn.btn-default{
   min-width: 40px;
   min-height: 40px;
+  transition: all 0.14s ease;
 }
 .pressed{
   background-color: #2D4189;
   border-color: #124189;
+}
+.pressedWithShift{
+  transform: scale(1.2);
+  border: 2px solid lightcoral;
 }
 .white-text{
   color: white;

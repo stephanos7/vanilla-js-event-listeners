@@ -87,19 +87,35 @@
       <a class="btn btn-default">RIGHT</a>
     </div>
     <script>
-      var eventArray = [];
+      var lastEvent;
+      var shiftPressed;
       window.addEventListener("keydown", function(e){
         //  console.log(e);
          // check event array length and clear after two events have been saved
-         if(eventArray.length < 2){
-            eventArray.push(e);
-            console.log("after push : ", eventArray);
-         }else{
-            eventArray = [];
-            eventArray.push(e);
-            console.log("after clear : ", eventArray);
-         }
+        //  if(eventArray.length < 2){
+        //     eventArray.push(e);
+        //     console.log("after push : ", eventArray);
+        //  }else{
+        //     eventArray = [];
+        //     eventArray.push(e);
+        //     console.log("after clear : ", eventArray);
+        //  }
             // console.log("key inside array: ", eventArray[0].key);
+
+
+        lastEvent = e;
+        console.log("last event: ", e);
+
+        // check if a shift key has been pressed 
+        if(lastEvent.key == "Shift"){
+          shiftPressed = lastEvent.code;
+          console.log(shiftPressed);
+        }else{
+          console.log("not shift");
+        }
+
+
+
 
         // query the button with the corresponding "keydown"-event keyCode
         const correspondingButton = document.querySelector(`a[data-code="${e.keyCode}"]`);
@@ -108,14 +124,28 @@
         // add the "pressed" css class to highlight the pressed keyboard button
         correspondingButton.classList.add("pressed");
 
+
         // create a new span containing the press button's name and append to the relevant keyboard button on the screen
-        var keyName = document.createElement('span');
+        const keyName = document.createElement('span');
         keyName.setAttribute("class", "white-text");
         keyName.innerHTML = `${e.key}`;
         correspondingButton.appendChild(keyName);
 
-        // check if a "shift" character has been pressed
-        console.log(this.shiftKey);
+        function removeTransition(e){
+          if(e.propertyName !== "transform") return;
+          correspondingButton.classList.remove("pressedWithShift");
+        }
+
+        const animatedButtons = document.querySelectorAll("a");
+        animatedButtons.forEach(element => element.addEventListener("transitionend", removeTransition));
+        
+        // check if the shift was combined with another key
+        if(lastEvent.shiftKey === true && lastEvent.keyCode !== 16 ){
+          console.log("it wash shifted");
+          correspondingButton.classList.add("pressedWithShift");
+          console.log("the shift pressed in this case : ", shiftPressed);
+        }
+
       });
 
 
